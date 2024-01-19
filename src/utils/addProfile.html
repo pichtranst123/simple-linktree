@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linktr.ee Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <style>
+            body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #3498db;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons img {
+    width: 30px;
+    margin: 0 5px;
+}
+
+main {
+    padding: 20px;
+}
+
+button {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-form {
+    display: none;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+button[type="button"] {
+    background-color: #e74c3c;
+    margin-top: 10px;
+}
+
+button[type="button"]:hover {
+    background-color: #c0392b;
+}
+
+        </style>
+        <main>
+            <div class="container">
+                <header>
+                    <h1>Linktr.ee Project</h1>
+                    <div class="social-icons">
+                        <img src="github-icon.png" alt="GitHub">
+                        <img src="facebook-icon.png" alt="Facebook">
+                        <img src="linkedin-icon.png" alt="LinkedIn">
+                        <img src="twitter-icon.png" alt="Twitter">
+                    </div>
+                </header>
+                <main>
+                    <button onclick="openProfileForm()">Add Profile</button>
+                    <div id="profileForm" class="profile-form">
+                        <form id="profileForm" action="/profile" method="post">
+                            <label for="github">GitHub:</label>
+                            <input type="text" id="github" name="github" placeholder="Enter your GitHub link" oninput="validateGitHubInput()">
+        
+                            <label for="facebook">Facebook:</label>
+                            <input type="text" id="facebook" name="facebook" placeholder="Enter your Facebook link" oninput="validateFacebookInput()">
+        
+                            <label for="linkedin">LinkedIn:</label>
+                            <input type="text" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn link" oninput="validateLinkedInput()">
+        
+                            <label for="twitter">Twitter:</label>
+                            <input type="text" id="twitter" name="twitter" placeholder="Enter your Twitter link" oninput="validateXInput()">
+        
+                            <button type="button" onclick="closeProfileForm()">Cancel</button>
+                            <button type="submit">Save</button>
+                        </form>
+                    </div>
+                </main>
+            </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('github').value = 'https://github.com/';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('facebook').value = 'https://facebook.com/';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('linkedin').value = 'https://linked.com/';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('twitter').value = 'https://twitter.com/';
+        });
+
+
+        function openProfileForm() {
+            document.getElementById("profileForm").style.display = "block";
+        }
+
+        function closeProfileForm() {
+            document.getElementById("profileForm").style.display = "none";
+        }
+
+        function validateGitHubInput() {
+            var githubInput = document.getElementById("github");
+            var prefix = "https://github.com/";
+
+            if (!githubInput.value.startsWith(prefix)) {
+                githubInput.value = prefix;
+            }
+        }
+        function validateFacebookInput() {
+            var fbInput = document.getElementById("facebook");
+            var prefix = "https://facebook.com/";
+
+            if (!fbInput.value.startsWith(prefix)) {
+                fbInput.value = prefix;
+            }
+        }
+        function validateLinkedInput() {
+            var linkInput = document.getElementById("linkedin");
+            var prefix = "https://linkedin.com/";
+
+            if (!linkInput.value.startsWith(prefix)) {
+                linkInput.value = prefix;
+            }
+        }
+        function validateXInput() {
+            var xInput = document.getElementById("twitter");
+            var prefix = "https://x.com/";
+
+            if (!xInput.value.startsWith(prefix)) {
+                xInput.value = prefix;
+            }
+        }
+    </script>
+</body>
+</html>

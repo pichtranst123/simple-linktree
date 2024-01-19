@@ -1,21 +1,26 @@
 import express, { Request, Response } from 'express';
-import userRouter from './routes/users'; // Ensure the path is correct
+import signupRouter from './routes/signup'; 
 import { connectToDatabase } from './services/dbconnect';
+import path from 'path';
+import homepageRouter from './routes/homepage';
+import profileRouter from './routes/profile';
+import { checkAuthToken  } from './middlewares.ts/authencation';  // Import the middleware
+
 const app = express();
 const port = 3000;
 
+
 async function startServer() {
   await connectToDatabase();
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true })); 
+  app.use('/signup', signupRouter); 
+  app.use('/', checkAuthToken, homepageRouter);
+  app.use('/profile', checkAuthToken, profileRouter);
 
-app.use(express.json());
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hellso World');
-});
-
-app.use('/login', userRouter); 
-
-app.listen(port, () => {
-  console.log('Server is running on port 3000');
-});
+  app.listen(port, () => {
+    console.log('Server is running on port 3000');
+  });
 }
+
 startServer().catch(console.error);
